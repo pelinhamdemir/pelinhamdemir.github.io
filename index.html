@@ -117,7 +117,7 @@
             const userInput = document.getElementById("user-input").value;
     
             try {
-                const response = await fetch("https://pelinhamdemir.github.io/api/predict", {
+                const response = await fetch("/api/predict", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json"
@@ -141,7 +141,7 @@
                             <h3>${result.title}</h3>
                             <p><strong>Kod:</strong> ${result.code}</p>
                             <p><strong>Açıklama:</strong> ${result.paragraph}</p>
-                            <p><strong Benzerlik:</strong> ${result.similarity.toFixed(2)}</p>
+                            <p><strong>Benzerlik:</strong> ${result.similarity.toFixed(2)}</p>
                         `;
                         resultsContainer.appendChild(resultDiv);
                     });
