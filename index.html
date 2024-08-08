@@ -117,7 +117,7 @@
             const userInput = document.getElementById("user-input").value;
     
             try {
-                const response = await fetch("/netlify/functions/predict", {
+                const response = await fetch("https://teknolojiyonetimi.netlify.app/predict", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json"
