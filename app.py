@@ -13,7 +13,7 @@ def _build_cors_preflight_response():
   response = make_response() 
   response.headers.add("Access-Control-Allow-Origin", "https://pelinhamdemir.github.io") 
   response.headers.add('Access-Control-Allow-Headers', 'Content-Type') 
-  response.headers.add('Access-Control-Allow-Methods', 'POST') 
+  response.headers.add('Access-Control-Allow-Methods', 'POST, OPTIONS')
   return response 
 
 def _corsify_actual_response(): 
