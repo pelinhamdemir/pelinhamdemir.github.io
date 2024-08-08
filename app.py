@@ -1,20 +1,29 @@
-from flask import Flask, request, jsonify
-from flask_cors import CORS # type: ignore
+from flask import Flask, request, jsonify, make_response 
+from flask_cors import 
+CORS app = Flask(__name__) 
+CORS(app, resources={r"/api/*": {"origins": "https://pelinhamdemir.github.io"}}) 
+@app.route('/api/predict', methods=['POST', 'OPTIONS']) 
+def predict(): 
+  if request.method == 'OPTIONS': 
+    return _build_cors_preflight_response() 
+  else: 
+    return _corsify_actual_response() 
 
-app = Flask(__name__)
-CORS(app)
-app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  next();
-});
-@app.route('/api/predict', methods=['POST'])  # Ensure the method is POST
-def predict():
-    data = request.get_json()  # Get the JSON data from the request
-    input_text = data.get('input_text')  # Extract input_text
-    # Add your logic to process input_text
-    output = f"Processed: {input_text}"  # Example processing
-    return jsonify({"output": output})  # Return the result
+def _build_cors_preflight_response(): 
+  response = make_response() 
+  response.headers.add("Access-Control-Allow-Origin", "https://pelinhamdemir.github.io") 
+  response.headers.add('Access-Control-Allow-Headers', 'Content-Type') 
+  response.headers.add('Access-Control-Allow-Methods', 'POST') 
+  return response 
 
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5500)
+def _corsify_actual_response(): 
+  data = request.get_json() 
+  input_text = data.get('input_text') if data else None 
+  
+  output = f"Processed: {input_text}"  if input_text else "No input provided" 
+  
+  response = jsonify({"output": output}) 
+  response.headers.add("Access-Control-Allow-Origin", "https://pelinhamdemir.github.io") 
+  return response 
+
+if __name__ == '__main__': app.run(host='0.0.0.0', port=5500)
