@@ -113,44 +113,5 @@
         </div>
     </section>
 
-    <script>
-        document.getElementById("search-button").addEventListener("click", async () => {
-    const userInput = document.getElementById("user-input").value;
-
-    try {
-        const response = await fetch("https://glitch.com/edit/#!/mud-silky-apatosaurus?path=style.css%3A270%3A19", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({ user_input: userInput }),
-            mode: 'cors'
-        });
-
-        if (!response.ok) {
-            throw new Error('Ağ yanıtı beklenildiği gibi değildi');
-        }
-
-        const results = await response.json();
-
-        const resultsContainer = document.getElementById("results-container");
-        resultsContainer.innerHTML = ""; 
-
-        if (results.output) { 
-            const resultDiv = document.createElement("div");
-            resultDiv.innerHTML = `
-                <p><strong>Sonuç:</strong> ${results.output}</p>
-            `;
-            resultsContainer.appendChild(resultDiv);
-        } else {
-            resultsContainer.innerHTML = "<p>Sonuç bulunamadı.</p>";
-        }
-    } catch (error) {
-        console.error('Hata:', error);
-        const resultsContainer = document.getElementById("results-container");
-        resultsContainer.innerHTML = "<p>Sonuçları alırken bir hata oluştu.</p>";
-    }
-});
-    </script>
 </body>
 </html>
