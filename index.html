@@ -1,11 +1,10 @@
-/*#https://glitch.com/edit/#!/boiled-stitch-radar*/
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/style.css">
-    <link rel="stylesheet" href="/css/all.css">
+    <link rel="stylesheet" href="static/css/style.css">
+    <link rel="stylesheet" href="static/css/all.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
@@ -18,27 +17,29 @@
                 <h2><a href="#">Teknoloji Yönetimi</a></h2>
             </div>
             <ul class="nav_links">
-                <li><a href="#Anasayfa">Anasayfa</a></li>
-                <li><a href="#Hakkımızda">Hakkımızda</a></li>
-                <li><a href="#TaksonomiSınıflandırma">Taksonomi Sınıflandırma</a></li>
-                <li><a href="#İletişim">İletişim</a></li>
+                <li><a href="#">Anasayfa</a></li>
+                <li><a href="#">Hakkımızda</a></li>
+                <li><a href="#">Taksonomi sınıflandırma</a></li>
+                <li><a href="#">İletişim</a></li>
             </ul>
         </div>
     </header>
 
+    <!--ANASAYFA-->
     <section id="Anasayfa">
         <div class="inneranasayfa">
-            <img src="Capture.PNG" alt="">
+            <img src="Capture.png" alt="">
             <div class="childanasayfa">
                 <h1>TÜRK HAVACILIK ve UZAY SANAYİ<br> <span class="span_child">Teknoloji Yönetimi Müdürlüğü</span></h1>
             </div>
             <div class="childanasayfa2">
                 <h1>Taksonomi sınıflandırma için</h1>
-                <button class="button"> Başla!</button>
+                <button class="button" onclick="startClassification()">Başla!</button>
             </div>
         </div>
     </section>
 
+    <!--HAKKIMIZDA-->
     <section id="Hakkımızda">
         <div class="section_title">
             <h2>HAKKIMIZDA</h2>
@@ -68,31 +69,36 @@
         </div>
     </section>
 
-    <section id="TaksonomiSınıflandırma">
+    <!--Taksonomi sınıflandırma-->
+    <section id="Taksonomi-sınıflandırma">
         <div class="section_title">
             <h2>TAKSONOMİ SINIFLANDIRMA</h2>
         </div>
         <div class="search-container">
-            <input type="text" id="user-input" placeholder="Arama yapın..." />
+            <input type="text" id="userInput" placeholder="Arama yapın..." />
             <button id="search-button">Ara</button>
         </div>
-        <div id="results-container"></div>
+        <div id="results"></div>
     </section>
 
+    <!--İletişim-->
     <section id="İletişim">
         <div class="section_title">
             <h2>İLETİŞİM</h2>
         </div>
         <div class="inneriletişim">
             <div class="outlook">
+                <img src="" alt="">
                 <h1>Outlook</h1>
                 <p>v6110@tai.com.tr</p>
             </div>
             <div class="telefon">
+                <img src="" alt="">
                 <h1>Telefon</h1>
                 <p>+90 (312) 811 18 00</p>
             </div>
             <div class="Adres">
+                <img src="" alt="">
                 <h1>Adres</h1>
                 <p>Fethiye Mahallesi, Havacılık Bulvarı No:17 06980 Kahramankazan Ankara</p>
             </div>
@@ -113,5 +119,31 @@
         </div>
     </section>
 
+    <script>
+        document.getElementById('search-button').addEventListener('click', function() {
+            const userInput = document.getElementById('userInput').value;
+            
+            // Burada /search API'sine POST isteği gönderebilirsiniz
+            fetch('http://127.0.0.1:5001/search', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ input_sentence: userInput })
+            })
+            .then(response => response.json())
+            .then(data => {
+                const resultsDiv = document.getElementById('results');
+                resultsDiv.innerHTML = '';  // Önceki sonuçları temizle
+
+                data.forEach(item => {
+                    const result = document.createElement('div');
+                    result.innerHTML = `<h3>${item.title}</h3><p>${item.paragraph}</p>`;
+                    resultsDiv.appendChild(result);
+                });
+            })
+            .catch(error => console.error('Error:', error));
+        });
+    </script>
 </body>
 </html>
