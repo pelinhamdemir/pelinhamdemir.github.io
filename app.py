@@ -1,30 +1,41 @@
-from flask import Flask, request, jsonify
-from flask_cors import CORS
-import pandas as pd
+from flask import Flask, request, jsonify, send_from_directory
 from sentence_transformers import SentenceTransformer, util
 from googletrans import Translator
+import pandas as pd
+from flask import Flask, render_template
+from flask_cors import CORS
 
 app = Flask(__name__)
-CORS(app, resources={r"/api/*": {"origins": "https://pelinhamdemir.github.io"}})
+CORS(app)
 
+
+@app.route('/')
+def index():
+    return send_from_directory(".",'index.html')
+
+# Modeli yükleyin
+model = SentenceTransformer('paraphrase-MiniLM-L6-v2')
+
+# Excel dosyasını yükleyin
 file_path = 'ssb_teknoloji_taksonomisi_corrected (1).xlsx'
 df = pd.read_excel(file_path)
-
-model = SentenceTransformer('sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2')
 codes = df.iloc[:, 0].astype(str).tolist()
 titles = df.iloc[:, 1].astype(str).tolist()
 paragraphs = df.iloc[:, 2].astype(str).tolist()
 
+# Embed işlemleri
 title_embeddings = model.encode(titles, convert_to_tensor=True)
 paragraph_embeddings = model.encode(paragraphs, convert_to_tensor=True)
 
-def find_related_codes(input_sentence, top_n=3):
+@app.route('/search', methods=['POST'])
+def search():
+    input_sentence = request.json['input_sentence']
     translator = Translator()
+
     translated = translator.translate(input_sentence, dest='en')
     input_sentence = translated.text
 
     input_embedding = model.encode(input_sentence, convert_to_tensor=True)
-
     title_similarities = util.pytorch_cos_sim(input_embedding, title_embeddings)[0]
     paragraph_similarities = util.pytorch_cos_sim(input_embedding, paragraph_embeddings)[0]
 
@@ -32,6 +43,7 @@ def find_related_codes(input_sentence, top_n=3):
     combined_similarities.sort(key=lambda x: (x[0] + x[1]), reverse=True)
 
     results = []
+    top_n = 3
     for sim in combined_similarities[:top_n]:
         best_index = sim[2]
         best_code = codes[best_index]
@@ -46,14 +58,7 @@ def find_related_codes(input_sentence, top_n=3):
             "similarity": similarity_score
         })
 
-    return results
-
-@app.route('/api/predict', methods=['POST'])
-def search():
-    data = request.get_json()
-    user_input = data.get('user_input')
-    results = find_related_codes(user_input, top_n=3)
     return jsonify(results)
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000)
+    app.run(debug=True,host='0.0.0.0',port=5001)
