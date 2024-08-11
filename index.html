@@ -11,6 +11,7 @@
     <title>Teknoloji Yönetimi</title>
 </head>
 <body>
+    
     <header>
         <div class="navbar">
             <div class="logo">
@@ -120,9 +121,16 @@
     </section>
 
     <script>
-        document.getElementById('search-button').addEventListener('click', function() {
+        document.getElementById('search-button').addEventListener('click', performSearch);
+        document.getElementById('userInput').addEventListener('keydown', function(event) {
+            if (event.key === 'Enter') {
+                performSearch();
+            }
+        });
+    
+        function performSearch() {
             const userInput = document.getElementById('userInput').value;
-            
+    
             // Burada /search API'sine POST isteği gönderebilirsiniz
             fetch('http://127.0.0.1:5001/search', {
                 method: 'POST',
@@ -135,15 +143,24 @@
             .then(data => {
                 const resultsDiv = document.getElementById('results');
                 resultsDiv.innerHTML = '';  // Önceki sonuçları temizle
-
+    
                 data.forEach(item => {
                     const result = document.createElement('div');
-                    result.innerHTML = `<h3>${item.title}</h3><p>${item.paragraph}</p>`;
+                    result.classList.add('result-item'); // CSS sınıfı ekleme
+    
+                    // Başlangıçta paragrafı gizle
+                    result.innerHTML = `
+                        <h3>${item.code}</h3>
+                        <h3>${item.title}</h3>
+                        <p>Similarity: ${item.similarity}</p>
+                        <p class="hidden-paragraph">${item.paragraph}</p>
+                    `;
+                    
                     resultsDiv.appendChild(result);
                 });
             })
             .catch(error => console.error('Error:', error));
-        });
+        }
     </script>
 </body>
 </html>
