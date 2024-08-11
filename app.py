@@ -49,7 +49,7 @@ def search():
         best_code = codes[best_index]
         best_title = titles[best_index]
         best_paragraph = paragraphs[best_index]
-        similarity_score = sim[0]
+        similarity_score = sim[0] + sim[1]  # Toplam similarity score
 
         results.append({
             "code": best_code,
@@ -58,7 +58,11 @@ def search():
             "similarity": similarity_score
         })
 
+    # Results'ı similarity değerine göre sıralayın
+    results.sort(key=lambda x: x['similarity'], reverse=True)
+
     return jsonify(results)
+
 
 if __name__ == '__main__':
     app.run(debug=True,host='0.0.0.0',port=5001)
