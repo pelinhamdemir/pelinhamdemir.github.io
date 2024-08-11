@@ -294,3 +294,26 @@ header{
     margin-top: 20px;
     text-align: center;
 }
+.result-item {
+    position: relative;
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+.hidden-paragraph {
+    display: none; /* Başlangıçta gizli */
+    margin-top: 10px;
+    font-style: italic;
+}
+
+.result-item:hover .hidden-paragraph {
+    display: block; /* Hover ile görünür */
+    background-color: #f9f9f9;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    transition: all 0.3s ease;
+}
