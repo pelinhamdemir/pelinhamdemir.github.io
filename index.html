@@ -18,10 +18,10 @@
                 <h2><a href="#">Teknoloji Yönetimi</a></h2>
             </div>
             <ul class="nav_links">
-                <li><a href="#Anasayfa">Anasayfa</a></li>
-                <li><a href="#Hakkımızda">Hakkımızda</a></li>
-                <li><a href="#Taksonomi-sınıflandırma">Taksonomi sınıflandırma</a></li>
-                <li><a href="#İletişim">İletişim</a></li>
+                <li><a href="#">Anasayfa</a></li>
+                <li><a href="#">Hakkımızda</a></li>
+                <li><a href="#">Taksonomi sınıflandırma</a></li>
+                <li><a href="#">İletişim</a></li>
             </ul>
         </div>
     </header>
@@ -121,4 +121,46 @@
     </section>
 
     <script>
-       
+        document.getElementById('search-button').addEventListener('click', performSearch);
+        document.getElementById('userInput').addEventListener('keydown', function(event) {
+            if (event.key === 'Enter') {
+                performSearch();
+            }
+        });
+    
+        function performSearch() {
+            const userInput = document.getElementById('userInput').value;
+    
+            // Burada /search API'sine POST isteği gönderebilirsiniz
+            fetch('http://127.0.0.1:5001/search', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ input_sentence: userInput })
+            })
+            .then(response => response.json())
+            .then(data => {
+                const resultsDiv = document.getElementById('results');
+                resultsDiv.innerHTML = '';  // Önceki sonuçları temizle
+    
+                data.forEach(item => {
+                    const result = document.createElement('div');
+                    result.classList.add('result-item'); // CSS sınıfı ekleme
+    
+                    // Başlangıçta paragrafı gizle
+                    result.innerHTML = 
+                        <h3>${item.code}</h3>
+                        <h3>${item.title}</h3>
+                        <p>Similarity: ${item.similarity}</p>
+                        <p class="hidden-paragraph">${item.paragraph}</p>
+                    ;
+                    
+                    resultsDiv.appendChild(result);
+                });
+            })
+            .catch(error => console.error('Error:', error));
+        }
+    </script>
+</body>
+</html>
