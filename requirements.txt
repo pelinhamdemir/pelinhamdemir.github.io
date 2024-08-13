@@ -1,6 +1,8 @@
-Flask
-Flask_cors
+translate
 googletrans==4.0.0-rc1
-sentence_transformers
-pandas
 openpyxl
+pandas
+flask
+flask_cors
+sentence-transformers
+numpy
