@@ -8,20 +8,20 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <title>Teknoloji Yönetimi</title>
 </head>
-<body>
-    
+<body style="background-image: url('./Capture.png');  background-attachment: fixed; background-repeat: no-repeat; margin: 0; background-size: cover; padding-top: 50px; ">
     <header>
         <div class="navbar">
             <div class="logo">
                 <h2><a href="#">Teknoloji Yönetimi</a></h2>
             </div>
             <ul class="nav_links">
-                <li><a href="#">Anasayfa</a></li>
-                <li><a href="#">Hakkımızda</a></li>
-                <li><a href="#">Taksonomi sınıflandırma</a></li>
-                <li><a href="#">İletişim</a></li>
+                <li><a href="#Anasayfa">Anasayfa</a></li>
+                <li><a href="#Hakkımızda">Hakkımızda</a></li>
+                <li><a href="#Taksonomi-sınıflandırma">Taksonomi sınıflandırma</a></li>
+                <li><a href="#İletişim">İletişim</a></li>
             </ul>
         </div>
     </header>
@@ -29,13 +29,15 @@
     <!--ANASAYFA-->
     <section id="Anasayfa">
         <div class="inneranasayfa">
-            <img src="Capture.PNG" alt="">
+            <img src="" alt="">
             <div class="childanasayfa">
                 <h1>TÜRK HAVACILIK ve UZAY SANAYİ<br> <span class="span_child">Teknoloji Yönetimi Müdürlüğü</span></h1>
             </div>
             <div class="childanasayfa2">
-                <h1>Taksonomi sınıflandırma için</h1>
-                <button class="button" onclick="startClassification()">Başla!</button>
+             <h1>Taksonomi sınıflandırma için</h1>
+              <a href="#Taksonomi-sınıflandırma">
+                <button class="button">Başla!</button>
+              </a>
             </div>
         </div>
     </section>
@@ -89,48 +91,41 @@
         </div>
         <div class="inneriletişim">
             <div class="outlook">
-                <img src="" alt="">
+                
                 <h1>Outlook</h1>
                 <p>v6110@tai.com.tr</p>
             </div>
             <div class="telefon">
-                <img src="" alt="">
+                
                 <h1>Telefon</h1>
                 <p>+90 (312) 811 18 00</p>
             </div>
             <div class="Adres">
-                <img src="" alt="">
+                
                 <h1>Adres</h1>
                 <p>Fethiye Mahallesi, Havacılık Bulvarı No:17 06980 Kahramankazan Ankara</p>
             </div>
             <div class="sosyal-medya">
                 <a href="https://www.linkedin.com/company/turkishaerospace/" target="_blank" class="social-icon">
-                    <img src="linkedinicon.png" alt="LinkedIn Icon">
+                    <i class="fa-brands fa-linkedin"></i>
                 </a>
                 <a href="https://www.facebook.com/turkishaerospace/" target="_blank" class="social-icon">
-                    <img src="facebookicon.png" alt="Facebook Icon">
+                    <i class="fa-brands fa-facebook"></i>
                 </a>
                 <a href="https://www.instagram.com" target="_blank" class="social-icon">
-                    <img src="instaicon.png" alt="Instagram Icon">
-                </a>
+                    <i class="fa-brands fa-instagram"></i>
+                </a>    
                 <a href="https://www.youtube.com/turkishaerospace" target="_blank" class="social-icon">
-                    <img src="yticon.png" alt="Youtube Icon">
+                    <i class="fa-brands fa-youtube"></i>
                 </a>
             </div>
         </div>
     </section>
 
     <script>
-        document.getElementById('search-button').addEventListener('click', performSearch);
-        document.getElementById('userInput').addEventListener('keydown', function(event) {
-            if (event.key === 'Enter') {
-                performSearch();
-            }
-        });
-    
-        function performSearch() {
+        document.getElementById('search-button').addEventListener('click', function() {
             const userInput = document.getElementById('userInput').value;
-    
+            
             // Burada /search API'sine POST isteği gönderebilirsiniz
             fetch('http://127.0.0.1:5001/search', {
                 method: 'POST',
@@ -143,24 +138,15 @@
             .then(data => {
                 const resultsDiv = document.getElementById('results');
                 resultsDiv.innerHTML = '';  // Önceki sonuçları temizle
-    
+
                 data.forEach(item => {
                     const result = document.createElement('div');
-                    result.classList.add('result-item'); // CSS sınıfı ekleme
-    
-                    // Başlangıçta paragrafı gizle
-                    result.innerHTML = 
-                        <h3>${item.code}</h3>
-                        <h3>${item.title}</h3>
-                        <p>Similarity: ${item.similarity}</p>
-                        <p class="hidden-paragraph">${item.paragraph}</p>
-                    ;
-                    
+                    result.innerHTML = `<h3>${item.title}</h3><p>${item.paragraph}</p>`;
                     resultsDiv.appendChild(result);
                 });
             })
             .catch(error => console.error('Error:', error));
-        }
+        });
     </script>
 </body>
 </html>
