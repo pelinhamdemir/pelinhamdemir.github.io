@@ -141,7 +141,7 @@
 
                 data.forEach(item => {
                     const result = document.createElement('div');
-                    result.innerHTML = `<h3>${item.title}</h3><p>${item.paragraph}</p>`;
+                    result.innerHTML = `<h3>${item.code}</h3><h3>${item.title}</h3><p>Similarity: ${item.similarity}</p><p>${item.paragraph}</p>`;
                     resultsDiv.appendChild(result);
                 });
             })
