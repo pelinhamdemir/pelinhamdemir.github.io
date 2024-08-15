@@ -49,19 +49,25 @@ def search():
         best_code = codes[best_index]
         best_title = titles[best_index]
         best_paragraph = paragraphs[best_index]
-        similarity_score = sim[0] + sim[1]  # Toplam similarity score
+        similarity_score = sim[0]  # Toplam similarity score
 
         results.append({
             "code": best_code,
             "title": best_title,
             "paragraph": best_paragraph,
-            "similarity": similarity_score
+            "similarity": round(similarity_score, 2)
         })
 
     # Results'ı similarity değerine göre sıralayın
     results.sort(key=lambda x: x['similarity'], reverse=True)
 
-    return jsonify(results)
+    for result in results:
+        print(f" {result['code']}, {result['title']}, Similarity: {result['similarity']},paragraph: {result['paragraph']}")
+
+    if not results:
+        print("No valid results found.")
+
+    return results
 
 
 if __name__ == '__main__':
