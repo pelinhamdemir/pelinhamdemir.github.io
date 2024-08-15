@@ -23,12 +23,14 @@ img{
 section{
     padding: 100px 0;
     background: transparent;  
+    margin-top: 10px;
                          
 }
 
 .section_title{
     margin-bottom: 30px;
-    margin-top: 100px
+    margin-top: 100px;
+    font-family: 'Poppins', sans-serif;
 
 }
 
@@ -46,104 +48,6 @@ section{
 
 
 
-/*HEADER*/
-
-
-header{
-    background:  #f4f4f6;
-    border-bottom: 1px solid rgba(240, 236, 236, 0.801);
-    position: fixed;
-    width: 100%;
-    z-index: 5;
-    padding: 0px 5px;
-    top: 0;
-}
-
-.navbar{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: 0 auto;
-    width: 100%;
-    padding: 20px 50px;
-}
-
-.nav_links{
-    display: flex;
-   
-}
-
-
-.nav_links li a{
-    margin-left: 90px;
-    color: #0d0d0e;
-    padding: 20px 15px;
-    border-radius: 5px;
-    transition: all .1s ease-in-out;
-    font-size: 20px;
-
-}
-
-.nav_links li a:hover{
-    background: #647684;
-    
-}
-
-
-.logo h2 a{
-    color: #010315;
-    text-transform: uppercase;
-}
-
-/*HAKKIMIZDA*/
-
-
-
-.innerabout{
-    text-align: center;
-    display: flex;
-    align-items: center;
-    width: 80%;
-    justify-content: space-between;
-    margin: 0 auto;
-    padding-top: 0;
-    
-}
-
-.innerabout_child{
-    flex-basis: 31%;
-    color: #f9f5f5;
-    padding: 25px 20px;
-    background: rgba(5, 56, 114, 0.5);
-    border-radius: 5px;
-    border: 1px solid transparent;
-    transition: all .5s ease-in-out;
-
-}
-
-.innerabout_child:hover{
-    border: 1px solid #00175a;
-    background: rgba(5, 56, 114, 0.5);
-}
-
-.innerabout_child .icon{
-    font-size: 25px;
-    color: #ffffff;
-
-}
-
-.innerabout_child h3{
-    font-size: 20px;
-    margin: 5px 0;
-
-}
-
-.innerabout_child p{
-    font-size: 15px;
-    margin: 5px 0;
-
-}
-
 /*ANASAYFA*/
 
 
@@ -152,11 +56,11 @@ header{
     align-items: center;
     justify-content: space-between;
     margin: 0 auto;
-    margin-bottom: 0;
+    margin-bottom: 10px;
     width: 80%
     color #fff;
     height: calc(100vh - 0px);
-    margin-bottom: 0;
+    margin-bottom: 10px;
     padding-bottom: 0;
     
 }
@@ -166,29 +70,28 @@ header{
     align-items: center;     /* Dikeyde ortalama */
 }
 
-.childanasayfa{
+.childanasayfa, .childanasayfa2 {
+    font-family: 'Poppins', sans-serif;
     flex-basis: 45%;
     position: absolute;
-    top: 60%;
-    left: 25%;
-    transform: translate(-50%, -50%);
-    color: white; 
+    color: white;
     text-align: center;
-    justify-content: center; /* Yatayda ortalama */
-    align-items: center;     /* Dikeyde ortalama */
+    justify-content: center;
+    align-items: center;
+    transform: translateX(-50%); /* Center horizontally */
 }
 
-.childanasayfa2{
-    flex-basis: 45%;
-    position: absolute;
-    top: 60%;
-    left: 80%;
-    transform: translate(-50%, -50%);
-    color: white; 
-    text-align: center;
-    justify-content: center; /* Yatayda ortalama */
-    align-items: center;     /* Dikeyde ortalama */
+.childanasayfa {
+    top: 40%; /* Adjust this value as needed */
+    left: 48%;
 }
+
+.childanasayfa2 {
+    font-family: 'Poppins', sans-serif;
+    top: 48%; /* Adjust this value as needed */
+    left: 47%;
+}
+
 
 .childanasayfa h1{
     font-size: 2em;
@@ -232,44 +135,47 @@ header{
 }
 
 /*İLETİŞİM*/
-.İletişim {
-    padding: 20px; 
+#İletişim {
+    padding: 20px;
     background-color: transparent;
-    
 }
 
 .section_title {
-    text-align: center; 
-    margin-bottom: 20px; 
+    text-align: center;
+    margin-bottom: 20px;
+    font-family: 'Poppins', sans-serif;
+    font-family: 'Poppins', sans-serif;
 }
 
 .inneriletişim {
-    display: grid; 
-    grid-template-columns: repeat(2, 1fr); 
+    display: grid;
+    grid-template-columns: 1fr; /* İçerikleri alt alta getirmek için */
     gap: 20px;
     color: #fff;
+    justify-items: center; /* İçerikleri yatayda ortalamak için */
+    background: rgba(5, 56, 114, 0.5);
+    border-radius: 5px;
+    flex-direction: column; /* Dikey hizalama */
+    font-family: 'Poppins', sans-serif;
    
-    
-}
-
-.outlook, .telefon, .Adres, .sosyal-medya {
-    background-color: rgba(0, 123, 255, 0.2); /* Şeffaf mavi arka plan */
-    padding: 20px; 
-    border-radius: 10px; /* Yuvarlak köşeler */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
-    text-align: center; 
-    align-items: center; 
-    border: 1px solid rgba(0, 123, 255, 0.5); /* Mavi sınır eklemek için */
-    
 }
 
 
 
-.social-icon {
-    text-align: center; 
-    text-decoration: none; 
-    color: black; 
+.inneriletişim h1 {
+    left: 30px;
+    font-size: 24px;
 }
+
+.inneriletişim p {
+    margin: 0;
+    font-size: 18px;
+    font-family: 'Poppins', sans-serif;
+}
+
+
+
+
 
 
 
@@ -285,10 +191,16 @@ header{
     margin: 0; 
 }
 
+
 .search-container {
     display: flex;
     justify-content: center;
     margin: 20px 0;
+    font-size: 100px; 
+    height: 200px;
+    width: 30px;
+    left:0;
+    position: center  ;
 }
 
 #user-input {
@@ -311,4 +223,31 @@ header{
 #results-container {
     margin-top: 20px;
     text-align: center;
+    font-family: 'Poppins', sans-serif;
+}
+
+.footer-container {
+    background-color: #f8f8f8; /* Light background color */
+    padding: 20px; /* Padding around the content */
+    text-align: center; /* Center align the text */
+    border-top: 1px solid #e0e0e0; /* Light border at the top */
+}
+
+.footer-bottom {
+    max-width: 1200px; /* Maximum width for the footer content */
+    margin: 0 auto; /* Center the content horizontally */
+}
+
+.footer-bottom img {
+    width: 300px; /* Set width for the logo image */
+    height: auto; /* Maintain aspect ratio */
+    margin-bottom: 10px; /* Space between image and text */
+}
+
+.footer-bottom p {
+    color: #555; /* Dark grey color for text */
+    margin: 10px 0; /* Vertical margin for paragraphs */
+    font-size: 14px; /* Font size for text */
+    height: 20px;
+    font-family: 'Poppins', sans-serif;
 }
