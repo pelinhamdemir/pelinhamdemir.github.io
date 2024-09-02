@@ -1,119 +1,181 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Karakter seti ve görünüm portunun ayarlanması -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Stil dosyası ve fontlar için bağlantılar -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="icon" href="static/favicon2.png" type="image/png">
 
+    <!-- Sayfanın başlığı -->
     <title>Teknoloji Yönetimi</title>
 </head>
-<body style="background-image: url('/static/tusaşİmage.jpg'); background-attachment: fixed; background-repeat: no-repeat; margin: 0; background-size: cover; padding-top: 50px;">
-    
-
-    <!--ANASAYFA-->
+<body style="background-image: url('/static/background2.jpg'); background-attachment: fixed; background-repeat: no-repeat; margin: 0; background-size: cover; padding-top: 50px;">
+    <!-- Yükleme ekranı -->
+    <div id="loading-screen">
+        <div id="pgLoadBlur">
+            <img src="static/pgLoadOrg.png" alt="Loading Image">
+        </div>
+    </div>  
+    <!-- ANASAYFA BÖLÜMÜ -->
     <section id="Anasayfa">
-        <div class="inneranasayfa">
-            <img src="" alt="">
-            <div class="childanasayfa">
-                <h1>Teknoloji Yönetimi Müdürlüğü</h1>
+        <div class="container">
+            <!-- Logo ve başlıklar için bir kapsayıcı -->
+            <div class="header-content">
+                <img src="static/logo.png" alt="Logo">
+                <div class="header-text">
+                    <h1>Türk Havacılık ve Uzay Sanayii</h1>
+                    <h2>Teknoloji Yönetimi Müdürlüğü</h2>
+                </div>
             </div>
-            <div class="childanasayfa2">
-             <h1>Taksonomi sınıflandırma için</h1>
-              <a href="#Taksonomi-sınıflandırma">
-                <button class="button">Başla!</button>
-              </a>
+            <!-- Eylem çağrısı butonu için bir kapsayıcı -->
+            <div class="action-content">
+                <h1>Taksonomi Sınıflandırma İçin</h1>
+                <a href="#Taksonomi-sınıflandırma">
+                    <button class="button">Başla!</button>
+                </a>
             </div>
         </div>
     </section>
-
    
-
-    <!--Taksonomi sınıflandırma-->
+    <!-- TAKSONOMİ SINIFLANDIRMA BÖLÜMÜ -->
     <section id="Taksonomi-sınıflandırma">
+        <!-- Bölüm başlığı -->
         <div class="section_title">
             <h2>TAKSONOMİ SINIFLANDIRMA</h2>
         </div>
+        <!-- Arama kutusu ve butonu için bir kapsayıcı -->
         <div class="search-container">
-            <input type="text" id="userInput" placeholder="Arama yapın..." />
+            <textarea id="userInput" placeholder="Arama yapın..."></textarea>
             <button id="search-button">Ara</button>
         </div>
+        <!-- Arama sonuçlarının gösterileceği alan -->
         <div id="results"></div>
     </section>
 
-    <!--İletişim-->
+    <!-- İLETİŞİM BÖLÜMÜ -->
     <section id="İletişim">
+        <!-- Bölüm başlığı -->
         <div class="section_title">
             <h2>BİZE ULAŞIN</h2>
         </div>
+        <!-- İletişim bilgileri için bir kapsayıcı -->
         <div class="inneriletişim">
             <div>
+                <!-- E-posta ikonu ve adresi -->
                 <div class="icon-container">
                     <a href="mailto:v6110@tai.com.tr">
-                        <i class="fas fa-envelope" style="font-size: 36px;"></i>
+                        <i class="fas fa-envelope" style="font-size: 36px; color: white;"></i>
                     </a>
-                    <h1></h1>
                 </div>
                 <p>v6110@tai.com.tr</p>
             </div>
             <div>
+                <!-- Telefon ikonu ve numarası -->
                 <div class="icon-container">
                     <i class="fas fa-phone" style="font-size: 36px;"></i>
-                    <h1></h1>
                 </div>
                 <p>+90 (312) 811 18 00</p>
             </div>
             <div>
+                <!-- Adres ikonu ve adres bilgisi -->
                 <div class="icon-container">
                     <i class="fas fa-map-marker-alt" style="font-size: 36px;"></i>
-                    <h1></h1>
                 </div>
                 <p>Fethiye Mahallesi, Havacılık Bulvarı No:17 06980 Kahramankazan Ankara</p>
             </div>
         </div>
     </section>
 
-
-
-
+    <!-- ALT BİLGİ BÖLÜMÜ -->
     <footer>
         <div class="footer-container">
-        <div class="footer-bottom">
-            <img src="tusaşsembol.jpg" alt="">
-            <p>Copyright © 2024 TUSAŞ-Türk Havacılık ve Uzay Sanayii A.Ş. </p>
-            <p>Teknoloji Yönetim Müdürlüğü</p>
-            <p>TSKGV'nin Bağlı Ortaklığı ve SSB'nin İştirakidir.</p>
+            <div class="footer-bottom">
+                <img src="static/tusaşsembol.jpg" alt="">
+                <p>Copyright © 2024 TUSAŞ-Türk Havacılık ve Uzay Sanayii A.Ş.</p>
+                <p>Teknoloji Yönetim Müdürlüğü</p>
+                <p>TSKGV'nin Bağlı Ortaklığı ve SSB'nin İştirakidir.</p>
+            </div>
         </div>
     </footer>
+
+    <!-- Javascript kodları -->
     <script>
-        document.getElementById('search-button').addEventListener('click', function() {
-            const userInput = document.getElementById('userInput').value;
-            
-            // Burada /search API'sine POST isteği gönderebilirsiniz
-            fetch('http://127.0.0.1:5001/search', {
+        // Arama işlemini gerçekleştiren fonksiyon
+        async function performSearch() {
+            const inputSentence = document.getElementById("userInput").value;
+            const response = await fetch('/search', {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ input_sentence: userInput })
-            })
-            .then(response => response.json())
-            .then(data => {
-                const resultsDiv = document.getElementById('results');
-                resultsDiv.innerHTML = '';  // Önceki sonuçları temizle
+                body: JSON.stringify({ input_sentence: inputSentence }),
+            });
+    
+            const results = await response.json();
+            displayResults(results);
+        }
+    
+        // Arama sonuçlarını ekrana yazdıran fonksiyon
+        function displayResults(results) {
+            const resultsDiv = document.getElementById("results");
+            resultsDiv.innerHTML = "";
+    
+            results.forEach(result => {
+                const resultItem = document.createElement("div");
+                resultItem.classList.add("result-item");
+    
+                const code = document.createElement("p");
+                code.textContent = result.code; // Değiştirilmiş
 
-                data.forEach(item => {
-                    const result = document.createElement('div');
-                    result.innerHTML = `<h3>${item.code}</h3><h3>${item.title}</h3><p>Similarity: ${item.similarity}</p><p>${item.paragraph}</p>`;
-                    resultsDiv.appendChild(result);
-                });
-            })
-            .catch(error => console.error('Error:', error));
+                const title = document.createElement("h3");
+                title.textContent = result.title;
+
+                const similarity = document.createElement("p");
+                similarity.textContent = `Similarity: ${result.similarity}`; // Şablon dizgisiyle düzeltilmiş
+    
+                const paragraph1 = document.createElement("p");
+                paragraph1.textContent = result.paragraph_to_compare;
+
+                const paragraph2 = document.createElement("p");
+                paragraph2.textContent = result.paragraph_to_display;
+                
+                resultItem.appendChild(code);
+                resultItem.appendChild(title);
+                resultItem.appendChild(similarity);
+                resultItem.appendChild(paragraph2);
+                resultItem.appendChild(paragraph1);
+
+    
+                // Sonuç öğesini sonuçlar div'ine ekle
+                resultsDiv.appendChild(resultItem);
+            });
+        }
+    
+        // Arama butonuna tıklanıldığında arama işlemini başlatan olay dinleyicisi
+        document.getElementById("search-button").addEventListener("click", performSearch);
+
+        // Enter tuşuna basıldığında arama işlemini başlatan olay dinleyicisi
+        document.getElementById('userInput').addEventListener('keydown', function(event) {
+            if (event.key === 'Enter') {
+                event.preventDefault(); 
+                performSearch();
+            }
         });
+        window.addEventListener('load', function() {
+            const loadingScreen = document.getElementById('loading-screen');
+            setTimeout(() => {
+                loadingScreen.classList.add('loading-screen-hidden');
+            }, 1000); // Ekranı 1 saniye sonra gizle
+        });
+
     </script>
 </body>
 </html>
